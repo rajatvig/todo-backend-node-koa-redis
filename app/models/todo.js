@@ -29,6 +29,20 @@ module.exports = {
     params.id = id;
     params.completed = false;
     params.url = baseUrl + id;
+    params.order = params.order || id;
+
+    yield db.set(dbKey(id), serialize(params));
+    return params;
+  },
+
+  createWithId: function*(id, baseUrl) {
+    var params = {};
+
+    params.id = id;
+    params.title = 'blah';
+    params.completed = false;
+    params.url = baseUrl + id;
+    params.order = 1234;
 
     yield db.set(dbKey(id), serialize(params));
     return params;

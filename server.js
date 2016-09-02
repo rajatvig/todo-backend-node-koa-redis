@@ -22,6 +22,11 @@ function render(controller, action) {
 
 /* routes start */
 
+if (process.env.NODE_ENV == 'test') {
+  routes.get('/states',        render('state', 'states'));
+  routes.get('/states/active', render('state', 'active'));
+}
+
 routes.get(  '/todos',                     render('todos',     'all'));
 routes.post( '/todos',        bodyParser,  render('todos',     'create'));
 routes.get(  '/todos/:id',                 render('todos',     'show'));
