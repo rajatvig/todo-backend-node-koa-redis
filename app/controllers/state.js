@@ -5,12 +5,18 @@ var Todo = require('../models/todo'),
 
 module.exports = {
   active: function*(query, params, body, req) {
-    var baseUrl = 'http://' + req.header.host + '/todos/';
-    return helpers.Ok(yield Todo.createWithId(1, baseUrl));
+    let baseUrl = 'http://' + req.header.host + '/todos/';
+    let stateParams = req.query;
+    if (stateParams.state.startsWith("some")) {
+      return helpers.Ok(yield Todo.createMultiple(baseUrl));
+    } else {
+      return helpers.Ok(yield Todo.createWithId(1, baseUrl));
+    }
   },
   states: function*(){
     return helpers.Ok({
       "TodoiOSClient": [
+        "some todoitems exist",
         "a todoitem with id 1 exists"
       ]
     });

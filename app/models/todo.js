@@ -35,6 +35,22 @@ module.exports = {
     return params;
   },
 
+  createMultiple: function*(baseUrl) {
+    [1,2].forEach((id) => {
+      var params = {};
+
+      params.id = id;
+      params.title = 'blah';
+      params.completed = false;
+      params.url = baseUrl + id;
+      params.order = 1234;
+
+      db.set(dbKey(id), serialize(params));
+    });
+
+    return {};
+  },
+
   createWithId: function*(id, baseUrl) {
     var params = {};
 
