@@ -1,0 +1,19 @@
+version: '2'
+services:
+  redis:
+    image: redis
+    hostname: redis
+    domainname: docker.local
+    ports:
+      - "6379:6379"
+  app:
+    build: .
+    environment:
+      NODE_ENV: test
+      REDIS_URL: redis.docker.local
+    depends_on:
+      - redis
+    links:
+      - redis:redis.docker.local
+    ports:
+      - "3000:3000"
