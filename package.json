@@ -1,6 +1,6 @@
 {
   "name": "todo_backend_node_koa_redis",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A TODO Backend with node, koa and redis",
   "main": "server.js",
   "dependencies": {
