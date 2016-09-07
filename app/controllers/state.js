@@ -6,8 +6,7 @@ var Todo = require('../models/todo'),
 module.exports = {
   active: function*(query, params, body, req) {
     let baseUrl = 'http://' + req.header.host + '/todos/';
-    let stateParams = req.query;
-    if (stateParams.state.startsWith("some")) {
+    if (body.state.startsWith("some")) {
       return helpers.Ok(yield Todo.createMultiple(baseUrl));
     } else {
       return helpers.Ok(yield Todo.createWithId(1, baseUrl));

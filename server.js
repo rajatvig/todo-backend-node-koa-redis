@@ -23,8 +23,8 @@ function render(controller, action) {
 /* routes start */
 
 if (process.env.NODE_ENV == 'test') {
-  routes.get('/states',         render('state', 'states'));
-  routes.post('/states/active', render('state', 'active'));
+  routes.get('/states',                     render('state', 'states'));
+  routes.post('/states/active', bodyParser, render('state', 'active'));
 }
 
 routes.get(  '/todos',                     render('todos',     'all'));
